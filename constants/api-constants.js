@@ -1,4 +1,4 @@
-import { APP_HOST, APP_PORT } from "./environment-constants";
+const { APP_HOST, APP_PORT } = require("./environment-constants");
 
 export const apiUrlUsuarios = `${APP_HOST}:${APP_PORT}/usuarios`;
 export const apiUrlProductos = `${APP_HOST}:${APP_PORT}/productos`;
