@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const sequelize = require('./database');
-const { PORT } = require('./constants/environment-constants');
+const { APP_PORT } = require('./constants/environment-constants');
 const { httpStatus } = require('./constants/http-constants');
 const usuariosRoutes = require('./routes/usuarios');
 const productosRoutes = require('./routes/productos');
@@ -34,7 +34,7 @@ app.use((err, req, res, next) => {
 
 // Start the server
 sequelize.sync().then(() => {
-    app.listen(PORT, () => {
-        console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    app.listen(APP_PORT, () => {
+        console.log(`Servidor corriendo en http://localhost:${APP_PORT}`);
     });
 });
