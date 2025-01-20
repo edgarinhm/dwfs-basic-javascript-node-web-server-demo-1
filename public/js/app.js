@@ -1,4 +1,4 @@
-import { apiUrlPedidos, apiUrlProductos, apiUrlUsuarios } from "../../constants/api-constants";
+const { apiUrlPedidos, apiUrlProductos, apiUrlUsuarios } = require('../../constants/api-constants')
 
 function obtenerUsuarios() {
     fetch(apiUrlUsuarios)
