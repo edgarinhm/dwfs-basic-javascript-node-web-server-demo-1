@@ -1,4 +1,5 @@
 // Import required modules
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -8,7 +9,6 @@ const { httpStatus } = require('./constants/http-constants');
 const usuariosRoutes = require('./routes/usuarios');
 const productosRoutes = require('./routes/productos');
 const pedidosRoutes = require('./routes/pedidos');
-
 
 // Create an Express application
 const app = express();
