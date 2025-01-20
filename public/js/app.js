@@ -1,7 +1,3 @@
-const apiUrlUsuarios = `${process.env.APP_HOST || 'http://localhost'}:${process.env.APP_PORT || 3000}/usuarios`;
-const apiUrlProductos = `${process.env.APP_HOST || 'http://localhost'}:${process.env.APP_PORT || 3000}/productos`;
-const apiUrlPedidos = `${process.env.APP_HOST || 'http://localhost'}:${process.env.APP_PORT || 3000}/pedidos`;
-
 function obtenerUsuarios() {
     fetch(apiUrlUsuarios)
     .then(response => response.json())

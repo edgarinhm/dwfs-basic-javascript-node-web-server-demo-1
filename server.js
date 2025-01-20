@@ -9,6 +9,7 @@ const { httpStatus } = require('./constants/http-constants');
 const usuariosRoutes = require('./routes/usuarios');
 const productosRoutes = require('./routes/productos');
 const pedidosRoutes = require('./routes/pedidos');
+const { apiUrlPedidos, apiUrlProductos, apiUrlUsuarios } = require('./constants/api-constants')
 
 // Create an Express application
 const app = express();
@@ -19,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Define a route to serve the HTML file
 app.get('/', (req, res) => {
     // Send the HTML file as the response
-    res.render('index', {});
+    res.render('index', { apiUrlProductos: apiUrlProductos, apiUrlPedidos:apiUrlPedidos, apiUrlUsuarios:apiUrlUsuarios });
 });
 
 // Add api routes
