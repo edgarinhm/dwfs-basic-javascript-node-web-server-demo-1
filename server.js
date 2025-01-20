@@ -1,6 +1,7 @@
 // Import required modules
 require('dotenv').config();
 const express = require('express');
+const hbs = require('hbs')
 const path = require('path');
 const bodyParser = require('body-parser');
 const sequelize = require('./database');
@@ -9,10 +10,13 @@ const { httpStatus } = require('./constants/http-constants');
 const usuariosRoutes = require('./routes/usuarios');
 const productosRoutes = require('./routes/productos');
 const pedidosRoutes = require('./routes/pedidos');
-const { apiUrlPedidos, apiUrlProductos, apiUrlUsuarios } = require('./constants/api-constants')
+const { apiUrlPedidos, apiUrlProductos, apiUrlUsuarios } = require('./constants/api-constants');
 
 // Create an Express application
 const app = express();
+
+app.set('view engine', 'hbs');
+app.set("views", path.join(__dirname,"/public"));
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
