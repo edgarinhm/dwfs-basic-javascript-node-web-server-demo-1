@@ -6,7 +6,10 @@ const sequelize = new Sequelize(API_NAME, API_KEY, API_SECRET, {
     port: API_PORT,
     dialect: API_DB,
     dialectOptions: {
-        ssl: true
+        ssl: {
+            require: true,
+            rejectUnauthorized: false // <<<<<<< YOU NEED THIS
+        }
     }
 });
 

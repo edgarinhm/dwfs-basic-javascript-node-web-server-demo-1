@@ -102,4 +102,3 @@ function crearPedido() {
         console.error('Error:', error);
     });
 }
-
