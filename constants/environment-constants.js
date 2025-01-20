@@ -1,4 +1,4 @@
-export const APP_PORT = process.env.PORT || 3000;
+export const APP_PORT = process.env.APP_PORT || 3000;
 export const API_HOST = process.env.API_HOST || 'localhost';
 export const API_DB = process.env.API_DB || 'mysql' ;
 export const API_NAME = process.env.API_NAME || 'myapp_db';
