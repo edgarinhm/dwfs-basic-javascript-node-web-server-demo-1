@@ -5,32 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API de usuarios</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <script>
+        const apiUrlUsuarios = `{{apiUrlUsuarios}}`;
+        const apiUrlProductos = `{{apiUrlProductos}}`;
+        const apiUrlPedidos = `{{apiUrlPedidos}}`;
+    </script>
 </head>
 <body>
     <div class="container">
         <h2>Crear Usuarios</h2>
         <input type="text" id="nombreUsuario" placeholder="Nombre del usuario"/>
         <input type="email" id="emailUsuario" placeholder="Email del usuario"/>
-        <button onclick="crearUsuario(`{{apiUrlUsuarios}}`)">Crear</button>
+        <button onclick="crearUsuario()">Crear</button>
         <h2>Usuarios</h2>
-        <button onclick="obtenerUsuarios(`{{apiUrlUsuarios}}`)">Obtener Usuarios</button>
+        <button onclick="obtenerUsuarios()">Obtener Usuarios</button>
         <div id="usuarios"></div>
 
         <h2>Crear Productos</h2>
         <input type="text" id="nombreProducto" placeholder="Nombre del producto"/>
         <input type="number" id="precioProducto" placeholder="Precio del producto"/>
-        <button onclick="crearProducto(`{{apiUrlProductos}}`)">Crear</button>
+        <button onclick="crearProducto()">Crear</button>
         <h2>Productos</h2>
-        <button onclick="obtenerProductos(`{{apiUrlProductos}}`)">Obtener Productos</button>
+        <button onclick="obtenerProductos()">Obtener Productos</button>
         <div id="productos"></div>
 
         <h2>Crear Pedidos</h2>
         <input type="number" id="usuarioIdPedido" placeholder="ID del usuario"/>
         <input type="number" id="productoIdPedido" placeholder="ID del producto"/>
         <input type="number" id="cantidadPedido" placeholder="Cantidad"/>
-        <button onclick="crearPedido(`{{apiUrlPedidos}}`)">Crear</button>
+        <button onclick="crearPedido()">Crear</button>
         <h2>Pedidos</h2>
-        <button onclick="obtenerPedidos(`{{apiUrlPedidos}}`)">Obtener Pedidos</button>
+        <button onclick="obtenerPedidos()">Obtener Pedidos</button>
         <div id="pedidos"></div>
     </div>
     

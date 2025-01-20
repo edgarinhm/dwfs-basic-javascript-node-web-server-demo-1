@@ -1,4 +1,4 @@
-function obtenerUsuarios(apiUrlUsuarios) {
+function obtenerUsuarios() {
     fetch(apiUrlUsuarios)
     .then(response => response.json())
     .then(usuarios => {
@@ -10,7 +10,7 @@ function obtenerUsuarios(apiUrlUsuarios) {
     });
 }
 
-function crearUsuario(apiUrlUsuarios) {
+function crearUsuario() {
     const nombre = document.getElementById('nombreUsuario').value;
     const email = document.getElementById('emailUsuario').value;
     const nuevoUsuario = { nombre, email };
@@ -25,14 +25,14 @@ function crearUsuario(apiUrlUsuarios) {
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        obtenerUsuarios(apiUrlUsuarios);
+        obtenerUsuarios();
     })
     .catch(error => {
         console.error('Error:', error);
     });
 }
 
-function obtenerProductos(apiUrlProductos) {
+function obtenerProductos() {
     fetch(apiUrlProductos)
     .then(response => response.json())
     .then(productos => {
@@ -44,7 +44,7 @@ function obtenerProductos(apiUrlProductos) {
     });
 }
 
-function crearProducto(apiUrlProductos) {
+function crearProducto() {
     const nombre = document.getElementById('nombreProducto').value;
     const precio = document.getElementById('precioProducto').value;
     const nuevoProducto = { nombre, precio };
@@ -66,7 +66,7 @@ function crearProducto(apiUrlProductos) {
     });
 }
 
-function obtenerPedidos(apiUrlPedidos) {
+function obtenerPedidos() {
     fetch(apiUrlPedidos)
     .then(response => response.json())
     .then(pedidos => {
@@ -78,7 +78,7 @@ function obtenerPedidos(apiUrlPedidos) {
     });
 }
 
-function crearPedido(apiUrlPedidos) {
+function crearPedido() {
     const usuarioId = document.getElementById('usuarioIdPedido').value;
     const productoId = document.getElementById('productoIdPedido').value;
     const cantidad = document.getElementById('cantidadPedido').value;
