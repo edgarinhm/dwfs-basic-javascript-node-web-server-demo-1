@@ -1,4 +1,6 @@
-const { apiUrlPedidos, apiUrlProductos, apiUrlUsuarios } = require('../../constants/api-constants')
+const apiUrlUsuarios = `${process.env.APP_HOST || 'http://localhost'}:${process.env.APP_PORT || 3000}/usuarios`;
+const apiUrlProductos = `${process.env.APP_HOST || 'http://localhost'}:${process.env.APP_PORT || 3000}/productos`;
+const apiUrlPedidos = `${process.env.APP_HOST || 'http://localhost'}:${process.env.APP_PORT || 3000}/pedidos`;
 
 function obtenerUsuarios() {
     fetch(apiUrlUsuarios)
@@ -102,3 +104,4 @@ function crearPedido() {
         console.error('Error:', error);
     });
 }
+
