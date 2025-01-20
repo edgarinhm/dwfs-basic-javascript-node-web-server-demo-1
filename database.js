@@ -8,5 +8,3 @@ const sequelize = new Sequelize(API_NAME, API_KEY, API_SECRET, {
 });
 
 module.exports = sequelize;
-
-
