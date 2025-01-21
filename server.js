@@ -16,11 +16,10 @@ const { apiUrlPedidos, apiUrlProductos, apiUrlUsuarios } = require('./constants/
 
 // Create an Express application
 const app = express();
-
-app.use(cors(corsOptions));
 app.set('view engine', 'hbs');
 app.set("views", path.join(__dirname,"/public"));
 
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -1,4 +1,4 @@
-const allowedOrigins = require('./allowed-origins');
+const allowedOrigins = require('./constants/allowed-origins-constants');
 
 const corsOptions = {
     origin: (origin, callback) => {
