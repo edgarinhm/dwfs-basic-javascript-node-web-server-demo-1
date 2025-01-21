@@ -1,7 +1,9 @@
 // Import required modules
 require('dotenv').config();
 const express = require('express');
-const hbs = require('hbs')
+const hbs = require('hbs');
+const cors = require('cors');
+const corsOptions = require('./cors-options');
 const path = require('path');
 const bodyParser = require('body-parser');
 const sequelize = require('./database');
@@ -15,6 +17,7 @@ const { apiUrlPedidos, apiUrlProductos, apiUrlUsuarios } = require('./constants/
 // Create an Express application
 const app = express();
 
+app.use(cors(corsOptions));
 app.set('view engine', 'hbs');
 app.set("views", path.join(__dirname,"/public"));
 
