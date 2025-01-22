@@ -13,6 +13,8 @@ const usuariosRoutes = require('./routes/usuarios');
 const productosRoutes = require('./routes/productos');
 const pedidosRoutes = require('./routes/pedidos');
 const { apiUrlPedidos, apiUrlProductos, apiUrlUsuarios } = require('./constants/api-constants');
+const { MongoClient, ObjectId } = require('mongodb');
+const { connectToDb } = require('./models/mongo-db/connection');
 
 // Create an Express application
 const app = express();
@@ -22,6 +24,7 @@ app.set("views", path.join(__dirname,"/public"));
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Define a route to serve the HTML file
 app.get('/', (req, res) => {
@@ -40,8 +43,11 @@ app.use((err, req, res, next) => {
   });
 
 // Start the server
-sequelize.sync().then(() => {
+async function startServer() {
+    await connectToDb(MongoClient, ObjectId);
     app.listen(APP_PORT, () => {
         console.log(`Servidor corriendo en ${APP_HOST}:${APP_PORT}`);
     });
-});
+};
+
+startServer();

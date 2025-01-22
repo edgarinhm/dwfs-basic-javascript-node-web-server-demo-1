@@ -1,33 +1,63 @@
 const express = require('express');
 const router = express.Router();
-const Producto = require('../models/producto');
+//const Producto = require('../models/producto');
+const Producto = require('../models/mongo-db/producto');
+const { ProductRepository } = require('../repositories/mongodb/product-repository');
+const { MakeGetProducts, MakeCreateProduct, MakeUpdateProduct, MakeDeleteProduct } = require('../controllers/product-controller');
+const httpStatus = require('../constants/http-constants');
+
 
 // Crear producto
 router.post('/', async (req, res) => {
     const { nombre, precio } = req.body;
-    const producto = await Producto.create({ nombre, precio });
-    res.json(producto);
+    try {
+        const productRepository = new ProductRepository({ productModel: Producto });
+        const createProduct = MakeCreateProduct(productRepository);
+        const producto = await createProduct({ nombre, precio });
+        res.json(producto);
+    } catch (error) {
+        console.error(error);
+        return res.status(error.status || httpStatus.SERVER_ERROR).json(error);
+    }
 });
 
 // Obtener todos los productos
 router.get('/', async (req, res) => {
-    const productos = await Producto.findAll();
-    res.json(productos);
+    try {
+        const productRepository = new ProductRepository({ productModel: Producto });
+        const getProducts = MakeGetProducts(productRepository);
+        const productos = await getProducts();
+        res.json(productos);
+    } catch (error) {
+        return res.status(error.status || httpStatus.SERVER_ERROR).json(error);
+    }
 });
 
 // Actualizar producto
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
     const { nombre, precio } = req.body;
-    await Producto.update({ nombre, precio }, { where: { id } });
-    res.json({ mensaje: 'Producto actualizado' });
+    try {
+        const productRepository = new ProductRepository({ productModel: Producto });
+        const updateProduct = MakeUpdateProduct(productRepository);
+        await updateProduct({ id, nombre, precio });
+        res.json({ mensaje: 'Producto actualizado' });
+    } catch (error) {
+        return res.status(error.status || httpStatus.SERVER_ERROR).json(error);
+    }
 });
 
 // Eliminar producto
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;
-    await Producto.destroy({ where: { id } });
-    res.json({ mensaje: 'Producto eliminado' });
+    try {
+        const productRepository = new ProductRepository({ productModel: Producto });
+        const deleteProduct = MakeDeleteProduct(productRepository);
+        await deleteProduct(id);
+        res.json({ mensaje: 'Producto eliminado' });
+    } catch (error) {
+        return res.status(error.status || httpStatus.SERVER_ERROR).json(error);
+    }
 });
 
 module.exports = router;
