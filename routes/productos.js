@@ -25,7 +25,6 @@ const createRouter = ({ Producto, ProductRepository }) => {
             const productos = await getProducts();
             res.json(productos);
         } catch (error) {
-            console.error(error);
             return res.status(error.status || httpStatus.SERVER_ERROR).json(error);
         }
     });

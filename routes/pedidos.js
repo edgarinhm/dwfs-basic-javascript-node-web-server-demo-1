@@ -25,7 +25,6 @@ const createRouter = ({ Pedido, OrderRepository }) => {
             const pedidos = await getOrders();
             res.json(pedidos);
         } catch (error) {
-            console.log('getOrders-error', error)
             return res.status(error.status || httpStatus.SERVER_ERROR).json(error);
         }
 
