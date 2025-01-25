@@ -3,24 +3,15 @@ export class OrderRepository {
         this.orderModel = orderModel;
     }
     getOrders = async () => {
-        const  collection = await this.orderModel.getCollection();
-        return await collection.find({}).limit(50).toArray();
+        return await this.orderModel.findAll();
     }
-    createOrder = async (Order) => {
-        const  collection = await this.orderModel.getCollection();
-        return await collection.insertOne(Order);
+    createOrder = async (order) => {
+        return await this.orderModel.create(order);
     }
-    updateOrder = async (Order) => {
-        const query = { _id: this.orderModel.getObjectId(id) };
-        const updates = {
-            $push: { Order: Order }
-        };
-        const  collection = await this.orderModel.getCollection();
-        return await collection.updateOne(query, updates);
+    updateOrder = async (order) => {
+        return await this.orderModel.update(order, { where: { id: order.id } });
     }
     deleteOrder = async (id) => {
-        const query = { _id: this.orderModel.getObjectId(id) };
-        const  collection = await this.orderModel.getCollection();
-        return await collection.deleteOne(query);
+        return await this.orderModel.destroy({ where: { id } });
     }
 }
